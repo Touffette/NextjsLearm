@@ -5,8 +5,8 @@
 // const client = await db.connect();
 
 // async function seedUsers() {
+//   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 //   await client.sql`
-//     CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 //     CREATE TABLE IF NOT EXISTS users (
 //       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
 //       name VARCHAR(255) NOT NULL,
@@ -30,8 +30,9 @@
 // }
 
 // async function seedInvoices() {
+//   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
 //   await client.sql`
-//     CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 //     CREATE TABLE IF NOT EXISTS invoices (
 //       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
 //       customer_id UUID NOT NULL,
@@ -55,8 +56,9 @@
 // }
 
 // async function seedCustomers() {
+//   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
 //   await client.sql`
-//     CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 //     CREATE TABLE IF NOT EXISTS customers (
 //       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
 //       name VARCHAR(255) NOT NULL,
@@ -99,79 +101,22 @@
 //   return insertedRevenue;
 // }
 
-// export async function GET() {
-//   return Response.json({
-//     message:
-//       'Uncomment this file and remove this line. You can delete this file when you are finished.',
-//   });
-//   try {
-//     await client.sql`BEGIN`;
-//     await seedUsers();
-//     await seedCustomers();
-//     await seedInvoices();
-//     await seedRevenue();
-//     await client.sql`COMMIT`;
+export async function GET() {
+  return Response.json({
+    message:
+      'Uncomment this file and remove this line. You can delete this file when you are finished.',
+  });
+  // try {
+  //   await client.sql`BEGIN`;
+  //   await seedUsers();
+  //   await seedCustomers();
+  //   await seedInvoices();
+  //   await seedRevenue();
+  //   await client.sql`COMMIT`;
 
-//     return Response.json({ message: 'Database seeded successfully' });
-//   } catch (error) {
-//     await client.sql`ROLLBACK`;
-//     return Response.json({ error }, { status: 500 });
-//   }
-// }
-
-
-
-
-// import bcrypt from 'bcrypt';
-// import dbConnect from '../lib/mangodb'
-// import User from '../lib/models/user';
-// import Invoice from '../lib/models/invoice';
-// import Customer from '../lib/models/customer';
-// import Revenue from '../lib/models/revenue';
-// import { users, invoices, customers, revenue } from '../lib/placeholder-data';
-
-// async function seedUsers() {
-//   await dbConnect();
-//   const insertedUsers = await Promise.all(
-//     users.map(async (user) => {
-//       const hashedPassword = await bcrypt.hash(user.password, 10);
-//       return User.create({
-//         name: user.name,
-//         email: user.email,
-//         password: hashedPassword,
-//       });
-//     })
-//   );
-//   return insertedUsers;
-// }
-
-// async function seedInvoices() {
-//   await dbConnect();
-//   const insertedInvoices = await Invoice.insertMany(invoices);
-//   return insertedInvoices;
-// }
-
-// async function seedCustomers() {
-//   await dbConnect();
-//   const insertedCustomers = await Customer.insertMany(customers);
-//   return insertedCustomers;
-// }
-
-// async function seedRevenue() {
-//   await dbConnect();
-//   const insertedRevenue = await Revenue.insertMany(revenue);
-//   return insertedRevenue;
-// }
-
-// export async function GET() {
-//   try {
-//     await seedUsers();
-//     await seedCustomers();
-//     await seedInvoices();
-//     await seedRevenue();
-
-//     return Response.json({ message: 'Database seeded successfully' });
-//   } catch (error) {
-//     return Response.json({ error }, { status: 500 });
-//   }
-// }
+  //   return Response.json({ message: 'Database seeded successfully' });
+  // } catch (error) {
+  //   await client.sql`ROLLBACK`;
+  //   return Response.json({ error }, { status: 500 });
+  // }
+}
